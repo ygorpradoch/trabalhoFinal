@@ -1,0 +1,131 @@
+[
+  {
+    "sprint": 1,
+    "milestone": "Preparacao REST",
+    "issues": [
+      {
+        "title": "[S1] Configurar ambiente de desenvolvimento",
+        "body": "## Descricao\nVerificar e configurar todas as ferramentas necessarias para o projeto.\n\n## Criterios de Aceitacao\n- [ ] Java 17+ instalado e configurado no PATH\n- [ ] Maven instalado e funcionando\n- [ ] Node.js LTS instalado\n- [ ] Angular CLI instalado globalmente (`npm install -g @angular/cli`)\n- [ ] VS Code instalado com extensoes Java e Angular\n- [ ] Executar o projeto console existente sem erros\n\n## Referencia\nMaterial didatico - Encontro 1",
+        "labels": ["sprint-1", "config", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S1] Analisar e mapear projeto console existente",
+        "body": "## Descricao\nExplorar o projeto Java console e documentar a responsabilidade de cada classe.\n\n## Criterios de Aceitacao\n- [ ] Listar todas as classes e seus pacotes\n- [ ] Descrever a responsabilidade de cada camada (domain, service, repository, controller)\n- [ ] Identificar as regras de negocio em ProdutoService e TipoProdutoService\n- [ ] Registrar o mapeamento no documento do grupo\n\n## Referencia\nMaterial didatico - Encontro 1",
+        "labels": ["sprint-1", "documentacao", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S1] Criar projeto Spring Boot no Spring Initializr",
+        "body": "## Descricao\nGerar o projeto base do backend via Spring Initializr com as dependencias corretas.\n\n## Criterios de Aceitacao\n- [ ] Projeto Maven com Java 17\n- [ ] Dependencias adicionadas: Spring Web, Spring Data JPA, Validation, H2 Database\n- [ ] Projeto importado no VS Code\n- [ ] Aplicacao sobe sem erros (`mvn spring-boot:run`)\n- [ ] Endpoint de teste (`/hello`) respondendo HTTP 200\n\n## Referencia\nMaterial didatico - Etapa A e Encontro 2",
+        "labels": ["sprint-1", "backend", "config", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S1] Definir estrutura de pacotes do backend",
+        "body": "## Descricao\nOrganizar os pacotes do projeto Spring Boot seguindo a arquitetura em camadas.\n\n## Criterios de Aceitacao\n- [ ] Pacotes criados: `domain`, `repository`, `service`, `controller`, `dto`, `exception`\n- [ ] Estrutura reflete a organizacao do projeto console original\n\n## Referencia\nMaterial didatico - Encontro 2",
+        "labels": ["sprint-1", "backend", "milestone-rest", "prioridade-media"]
+      }
+    ]
+  },
+  {
+    "sprint": 2,
+    "milestone": "Preparacao REST",
+    "issues": [
+      {
+        "title": "[S2] Criar entidades JPA: TipoProduto e Produto",
+        "body": "## Descricao\nModelar as entidades de dominio com anotacoes JPA para persistencia.\n\n## Criterios de Aceitacao\n- [ ] Classe `TipoProduto` anotada com `@Entity`, `@Id`, `@GeneratedValue`\n- [ ] Classe `Produto` anotada com `@Entity`, `@Id`, `@GeneratedValue`\n- [ ] Relacionamento `@ManyToOne` de Produto para TipoProduto\n- [ ] Banco H2 criando tabelas automaticamente ao subir a aplicacao\n\n## Referencia\nMaterial didatico - Etapa B e Encontro 2",
+        "labels": ["sprint-2", "backend", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S2] Criar repositories com JpaRepository",
+        "body": "## Descricao\nImplementar as interfaces de acesso a dados estendendo JpaRepository.\n\n## Criterios de Aceitacao\n- [ ] `ProdutoRepository` estende `JpaRepository<Produto, Long>`\n- [ ] `TipoProdutoRepository` estende `JpaRepository<TipoProduto, Long>`\n- [ ] Consultas basicas funcionando via repositorio\n\n## Referencia\nMaterial didatico - Etapa B e Encontro 3",
+        "labels": ["sprint-2", "backend", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S2] Implementar TipoProdutoService com CRUD",
+        "body": "## Descricao\nImplementar a camada de servico para TipoProduto com regras de negocio.\n\n## Criterios de Aceitacao\n- [ ] Metodo `listar()` retorna todos os tipos\n- [ ] Metodo `buscarPorId(id)` retorna tipo ou lanca excecao\n- [ ] Metodo `salvar(request)` valida e persiste\n- [ ] Metodo `remover(id)` remove ou lanca excecao se vinculado a produto\n\n## Referencia\nMaterial didatico - Etapa C e Encontro 3",
+        "labels": ["sprint-2", "backend", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S2] Implementar ProdutoService com CRUD",
+        "body": "## Descricao\nImplementar a camada de servico para Produto com regras de negocio.\n\n## Criterios de Aceitacao\n- [ ] Metodo `listar()` retorna todos os produtos\n- [ ] Metodo `buscarPorId(id)` retorna produto ou lanca excecao\n- [ ] Metodo `salvar(request)` valida tipo existente e persiste\n- [ ] Metodo `remover(id)` remove por id\n\n## Referencia\nMaterial didatico - Etapa C e Encontro 3",
+        "labels": ["sprint-2", "backend", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S2] Criar DTOs de request e response",
+        "body": "## Descricao\nCriar objetos de transferencia de dados para desacoplar entidades da API.\n\n## Criterios de Aceitacao\n- [ ] `ProdutoRequest` com campos de entrada\n- [ ] `ProdutoResponse` com campos de saida\n- [ ] `TipoProdutoRequest` com campos de entrada\n- [ ] `TipoProdutoResponse` com campos de saida\n- [ ] Entidades nao expostas diretamente nos endpoints\n\n## Referencia\nMaterial didatico - Encontro 3",
+        "labels": ["sprint-2", "backend", "milestone-rest", "prioridade-alta"]
+      },
+      {
+        "title": "[S2] Criar controllers REST para Produto e TipoProduto",
+        "body": "## Descricao\nExpor os endpoints REST para as operacoes de CRUD.\n\n## Criterios de Aceitacao\n- [ ] `GET /api/tipos-produto` lista todos\n- [ ] `POST /api/tipos-produto` cria novo\n- [ ] `DELETE /api/tipos-produto/{id}` remove\n- [ ] `GET /api/produtos` lista todos\n- [ ] `POST /api/produtos` cria novo\n- [ ] `DELETE /api/produtos/{id}` remove\n- [ ] Testar todos os endpoints no Postman ou Insomnia\n\n## Referencia\nMaterial didatico - Etapa C e Encontro 3",
+        "labels": ["sprint-2", "backend", "teste", "milestone-rest", "prioridade-alta"]
+      }
+    ]
+  },
+  {
+    "sprint": 3,
+    "milestone": "Criacao Aplicacao Angular",
+    "issues": [
+      {
+        "title": "[S3] Aplicar Bean Validation nos DTOs",
+        "body": "## Descricao\nAdicionar anotacoes de validacao nos DTOs de entrada para garantir dados corretos.\n\n## Criterios de Aceitacao\n- [ ] Campos obrigatorios anotados com `@NotBlank` ou `@NotNull`\n- [ ] Campos numericos com `@Positive` ou `@Min`\n- [ ] Controllers usando `@Valid` nos parametros de entrada\n- [ ] Requisicao invalida retorna HTTP 400\n\n## Referencia\nMaterial didatico - Encontro 3",
+        "labels": ["sprint-3", "backend", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S3] Criar excecao de negocio RegraNegocioException",
+        "body": "## Descricao\nImplementar classe de excecao personalizada para violacoes de regra de negocio.\n\n## Criterios de Aceitacao\n- [ ] Classe `RegraNegocioException` extende `RuntimeException`\n- [ ] Aceita mensagem descritiva no construtor\n- [ ] Lancada nos services quando regra e violada\n\n## Referencia\nMaterial didatico - Encontro 4",
+        "labels": ["sprint-3", "backend", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S3] Criar GlobalExceptionHandler com @ControllerAdvice",
+        "body": "## Descricao\nCentralizar o tratamento de excecoes e padronizar as respostas de erro da API.\n\n## Criterios de Aceitacao\n- [ ] Classe anotada com `@RestControllerAdvice`\n- [ ] Trata `RegraNegocioException` retornando HTTP 422\n- [ ] Trata erros de validacao retornando HTTP 400 com lista de campos\n- [ ] Payload padrao de erro contem: status, mensagem, timestamp, caminho\n\n## Referencia\nMaterial didatico - Etapa D e Encontro 4",
+        "labels": ["sprint-3", "backend", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S3] Criar projeto Angular com Angular CLI",
+        "body": "## Descricao\nInicializar o projeto frontend com Angular CLI.\n\n## Criterios de Aceitacao\n- [ ] Projeto criado com `ng new`\n- [ ] `HttpClientModule` importado no modulo principal\n- [ ] Aplicacao rodando na porta 4200 sem erros\n\n## Referencia\nMaterial didatico - Etapa E e Encontro 5",
+        "labels": ["sprint-3", "frontend", "config", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S3] Criar ProdutoService e TipoProdutoService no Angular",
+        "body": "## Descricao\nImplementar os services Angular responsaveis pelas chamadas HTTP a API REST.\n\n## Criterios de Aceitacao\n- [ ] `ProdutoService` com metodos `listar()`, `salvar()` e `remover()`\n- [ ] `TipoProdutoService` com metodo `listar()`\n- [ ] URL base da API configurada (`http://localhost:8080/api`)\n- [ ] Retornos usando `Observable`\n\n## Referencia\nMaterial didatico - Etapa E e Encontro 5",
+        "labels": ["sprint-3", "frontend", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S3] Configurar CORS no backend",
+        "body": "## Descricao\nHabilitar CORS no Spring Boot para permitir requisicoes do Angular.\n\n## Criterios de Aceitacao\n- [ ] Anotacao `@CrossOrigin` nos controllers ou configuracao global de CORS\n- [ ] Frontend consegue chamar a API sem erro de CORS no navegador\n\n## Referencia\nMaterial didatico - Etapa F e Encontro 5",
+        "labels": ["sprint-3", "backend", "config", "milestone-angular", "prioridade-alta"]
+      }
+    ]
+  },
+  {
+    "sprint": 4,
+    "milestone": "Criacao Aplicacao Angular",
+    "issues": [
+      {
+        "title": "[S4] Implementar componente lista-produtos",
+        "body": "## Descricao\nCriar a tela de listagem de produtos consumindo a API.\n\n## Criterios de Aceitacao\n- [ ] Componente exibe lista de produtos em tabela\n- [ ] Dados carregados ao inicializar (`ngOnInit`)\n- [ ] Botao de remover produto funcional\n- [ ] Mensagem exibida quando lista esta vazia\n\n## Referencia\nMaterial didatico - Encontro 5",
+        "labels": ["sprint-4", "frontend", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S4] Implementar componente form-produto",
+        "body": "## Descricao\nCriar o formulario de cadastro de produto.\n\n## Criterios de Aceitacao\n- [ ] Formulario com campos: nome, preco, quantidade, tipo de produto\n- [ ] Combo de tipos carregado da API\n- [ ] Submissao chama `ProdutoService.salvar()`\n- [ ] Mensagem de sucesso apos cadastro\n- [ ] Erros da API exibidos na tela\n\n## Referencia\nMaterial didatico - Encontro 5",
+        "labels": ["sprint-4", "frontend", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S4] Testar fluxo completo frontend-backend",
+        "body": "## Descricao\nValidar a integracao end-to-end entre Angular e Spring Boot.\n\n## Criterios de Aceitacao\n- [ ] Cadastrar produto via Angular e ver na listagem\n- [ ] Remover produto via Angular e confirmar remocao\n- [ ] Erros de validacao exibidos corretamente na interface\n- [ ] Sistema funciona sem erros no console do navegador\n\n## Referencia\nMaterial didatico - Etapa F e Encontro 5",
+        "labels": ["sprint-4", "frontend", "backend", "teste", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S4] Revisar padroes de projeto e escrever relatorio",
+        "body": "## Descricao\nAuditar o codigo, documentar os padroes aplicados e produzir relatorio final.\n\n## Criterios de Aceitacao\n- [ ] MVC, Repository, Service Layer e DTO identificados com exemplos do codigo\n- [ ] Observer (RxJS) identificado no Angular\n- [ ] Relatorio de 1 a 2 paginas com padroes, dificuldades e melhorias futuras\n- [ ] README atualizado com instrucoes de execucao do backend e frontend\n\n## Referencia\nMaterial didatico - Encontro 6 e Secao 9",
+        "labels": ["sprint-4", "documentacao", "milestone-angular", "prioridade-alta"]
+      },
+      {
+        "title": "[S4] Preparar e ensaiar demonstracao do sistema",
+        "body": "## Descricao\nDefinir roteiro de demonstracao e ensaiar apresentacao do sistema ao vivo.\n\n## Criterios de Aceitacao\n- [ ] Roteiro de demo definido: cadastrar, listar, remover, mostrar erro\n- [ ] Cada integrante sabe responder as perguntas guia do professor\n- [ ] Sistema funcionando no ambiente de apresentacao\n\n## Referencia\nMaterial didatico - Secao 10 (Perguntas Guia)",
+        "labels": ["sprint-4", "documentacao", "milestone-angular", "prioridade-alta"]
+      }
+    ]
+  }
+]

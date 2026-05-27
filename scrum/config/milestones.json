@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Preparacao REST",
+    "description": "Configurar ambiente, criar projeto Spring Boot e implementar CRUD REST completo com entidades, repositories, services e controllers.",
+    "due_on": "2026-05-31T23:59:59Z"
+  },
+  {
+    "title": "Criacao Aplicacao Angular",
+    "description": "Aplicar validacoes e tratamento de erros no backend, criar frontend Angular e integrar com a API REST.",
+    "due_on": "2026-06-14T23:59:59Z"
+  }
+]

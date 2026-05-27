@@ -1,0 +1,19 @@
+[
+  { "name": "sprint-1", "color": "0075ca", "description": "Sprint 1 - Ambiente e Backend Inicial" },
+  { "name": "sprint-2", "color": "e4e669", "description": "Sprint 2 - CRUD REST com Spring Boot" },
+  { "name": "sprint-3", "color": "d93f0b", "description": "Sprint 3 - Validacoes, Frontend Angular e Integracao" },
+  { "name": "sprint-4", "color": "0e8a16", "description": "Sprint 4 - Consolidacao e Apresentacao" },
+
+  { "name": "milestone-rest",    "color": "1d76db", "description": "Milestone: Preparacao REST" },
+  { "name": "milestone-angular", "color": "6f42c1", "description": "Milestone: Criacao Aplicacao Angular" },
+
+  { "name": "backend",       "color": "1d76db", "description": "Tarefa de backend Spring Boot" },
+  { "name": "frontend",      "color": "e99695", "description": "Tarefa de frontend Angular" },
+  { "name": "config",        "color": "f9d0c4", "description": "Configuracao de ambiente ou projeto" },
+  { "name": "documentacao",  "color": "bfd4f2", "description": "Documentacao, README, relatorio" },
+  { "name": "teste",         "color": "c5def5", "description": "Testes manuais ou automatizados" },
+
+  { "name": "prioridade-alta",  "color": "b60205", "description": "Alta prioridade" },
+  { "name": "prioridade-media", "color": "fbca04", "description": "Media prioridade" },
+  { "name": "prioridade-baixa", "color": "0075ca", "description": "Baixa prioridade" }
+]
