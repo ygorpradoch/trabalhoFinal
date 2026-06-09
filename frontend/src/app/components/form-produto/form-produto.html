@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Cadastrar Produto</h2>
+    </div>
+    <div class="card-body">
+
+      <div *ngIf="mensagemSucesso" class="alert alert-success">{{ mensagemSucesso }}</div>
+      <div *ngIf="mensagemErro" class="alert alert-danger">{{ mensagemErro }}</div>
+
+      <form (ngSubmit)="salvar()" #form="ngForm">
+
+        <div class="form-group">
+          <label for="nome">Nome do Produto *</label>
+          <input
+            id="nome"
+            type="text"
+            name="nome"
+            [(ngModel)]="produto.nome"
+            class="form-control"
+            [class.is-invalid]="errosCampos['nome']"
+            placeholder="Ex: Arroz Integral 1kg"
+          />
+          <div *ngIf="errosCampos['nome']" class="invalid-feedback">{{ errosCampos['nome'] }}</div>
+        </div>
+
+        <div class="form-group">
+          <label for="preco">Preço (R$) *</label>
+          <input
+            id="preco"
+            type="number"
+            name="preco"
+            [(ngModel)]="produto.preco"
+            class="form-control"
+            [class.is-invalid]="errosCampos['preco']"
+            step="0.01"
+            min="0.01"
+            placeholder="Ex: 9.99"
+          />
+          <div *ngIf="errosCampos['preco']" class="invalid-feedback">{{ errosCampos['preco'] }}</div>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo">Tipo de Produto *</label>
+          <select
+            id="tipo"
+            name="tipoProdutoId"
+            [(ngModel)]="produto.tipoProdutoId"
+            class="form-control"
+            [class.is-invalid]="errosCampos['tipoProdutoId']"
+          >
+            <option [value]="0" disabled>Selecione um tipo...</option>
+            <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nome }}</option>
+          </select>
+          <div *ngIf="errosCampos['tipoProdutoId']" class="invalid-feedback">{{ errosCampos['tipoProdutoId'] }}</div>
+          <div *ngIf="tipos.length === 0" class="hint">
+            Nenhum tipo cadastrado.
+            <a routerLink="/tipos-produto">Cadastrar tipos</a>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" [disabled]="salvando">
+            {{ salvando ? 'Salvando...' : 'Cadastrar' }}
+          </button>
+          <a routerLink="/produtos" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

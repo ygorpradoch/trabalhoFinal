@@ -1,0 +1,236 @@
+{
+  "info": {
+    "name": "Gestão de Produtos API",
+    "description": "Coleção completa para testar a API REST do projeto Spring Boot — CRUD de Produto e TipoProduto.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Tipos de Produto",
+      "item": [
+        {
+          "name": "Listar todos os tipos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tipos-produto",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tipos-produto"]
+            },
+            "description": "Retorna a lista de todos os tipos de produto cadastrados."
+          },
+          "response": []
+        },
+        {
+          "name": "Cadastrar tipo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Laticínio\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tipos-produto",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tipos-produto"]
+            },
+            "description": "Cadastra um novo tipo de produto. Retorna HTTP 201 com o tipo criado.\n\nErros possíveis:\n- 400: nome em branco\n- 422: nome duplicado"
+          },
+          "response": []
+        },
+        {
+          "name": "Cadastrar tipo — nome em branco (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tipos-produto",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tipos-produto"]
+            },
+            "description": "Testa a validação: nome vazio deve retornar HTTP 400 com detalhes do campo inválido."
+          },
+          "response": []
+        },
+        {
+          "name": "Remover tipo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tipos-produto/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tipos-produto", "1"]
+            },
+            "description": "Remove o tipo de produto pelo ID. Retorna HTTP 204 (sem conteúdo).\n\nErros possíveis:\n- 422: tipo possui produtos vinculados\n- 422: tipo não encontrado"
+          },
+          "response": []
+        },
+        {
+          "name": "Remover tipo — com produtos vinculados (422)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tipos-produto/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tipos-produto", "1"]
+            },
+            "description": "Testa a regra de negócio: não é permitido remover um tipo que possui produtos vinculados. Deve retornar HTTP 422."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Produtos",
+      "item": [
+        {
+          "name": "Listar todos os produtos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/produtos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "produtos"]
+            },
+            "description": "Retorna a lista de todos os produtos cadastrados, incluindo o nome do tipo de produto."
+          },
+          "response": []
+        },
+        {
+          "name": "Cadastrar produto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Queijo Minas\",\n  \"preco\": 12.50,\n  \"tipoProdutoId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/produtos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "produtos"]
+            },
+            "description": "Cadastra um novo produto. Retorna HTTP 201 com o produto criado.\n\nErros possíveis:\n- 400: campos inválidos (nome em branco, preço negativo, tipo não informado)\n- 422: tipo de produto não encontrado"
+          },
+          "response": []
+        },
+        {
+          "name": "Cadastrar produto — preço negativo (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Produto Inválido\",\n  \"preco\": -5.00,\n  \"tipoProdutoId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/produtos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "produtos"]
+            },
+            "description": "Testa a validação: preço negativo deve retornar HTTP 400."
+          },
+          "response": []
+        },
+        {
+          "name": "Cadastrar produto — tipo inexistente (422)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Produto Teste\",\n  \"preco\": 9.99,\n  \"tipoProdutoId\": 9999\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/produtos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "produtos"]
+            },
+            "description": "Testa a regra de negócio: tipo de produto com ID inexistente deve retornar HTTP 422."
+          },
+          "response": []
+        },
+        {
+          "name": "Remover produto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/produtos/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "produtos", "1"]
+            },
+            "description": "Remove o produto pelo ID. Retorna HTTP 204 (sem conteúdo).\n\nErros possíveis:\n- 422: produto não encontrado"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

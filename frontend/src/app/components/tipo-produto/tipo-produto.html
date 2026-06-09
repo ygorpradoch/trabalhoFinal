@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Tipos de Produto</h2>
+
+  <div *ngIf="mensagemSucesso" class="alert alert-success">{{ mensagemSucesso }}</div>
+  <div *ngIf="mensagemErro" class="alert alert-danger">{{ mensagemErro }}</div>
+
+  <div class="card">
+    <div class="card-header">Novo Tipo de Produto</div>
+    <div class="card-body">
+      <form (ngSubmit)="salvar()" class="inline-form">
+        <input
+          type="text"
+          name="novoNome"
+          [(ngModel)]="novoNome"
+          class="form-control"
+          placeholder="Nome do tipo (ex: Laticínio)"
+        />
+        <button type="submit" class="btn btn-primary" [disabled]="salvando">
+          {{ salvando ? 'Salvando...' : 'Adicionar' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <table class="tabela">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tipo of tipos">
+        <td>{{ tipo.id }}</td>
+        <td>{{ tipo.nome }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="remover(tipo.id, tipo.nome)">
+            Remover
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="tipos.length === 0">
+        <td colspan="3" class="vazio">Nenhum tipo cadastrado.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

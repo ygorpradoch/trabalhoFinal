@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="page-header">
+    <h2>Produtos</h2>
+    <a routerLink="/produtos/novo" class="btn btn-primary">+ Novo Produto</a>
+  </div>
+
+  <div *ngIf="mensagemSucesso" class="alert alert-success">{{ mensagemSucesso }}</div>
+  <div *ngIf="mensagemErro" class="alert alert-danger">{{ mensagemErro }}</div>
+
+  <div *ngIf="carregando" class="carregando">Carregando...</div>
+
+  <table *ngIf="!carregando" class="tabela">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Preço (R$)</th>
+        <th>Tipo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtos">
+        <td>{{ produto.id }}</td>
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.preco | number:'1.2-2' }}</td>
+        <td>{{ produto.tipoProdutoNome }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="remover(produto.id, produto.nome)">
+            Remover
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="produtos.length === 0">
+        <td colspan="5" class="vazio">Nenhum produto cadastrado.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

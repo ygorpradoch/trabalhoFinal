@@ -1,0 +1,22 @@
+# Maven
+backend/target/
+
+# Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Java compiled
+*.class
+
+# IDE
+.vscode/settings.json
+*.iml
+.idea/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

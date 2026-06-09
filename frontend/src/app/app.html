@@ -1,0 +1,21 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <span>🛒 Gestão de Produtos</span>
+  </div>
+  <ul class="navbar-nav">
+    <li>
+      <a routerLink="/produtos" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Produtos
+      </a>
+    </li>
+    <li>
+      <a routerLink="/tipos-produto" routerLinkActive="active">
+        Tipos de Produto
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<main>
+  <router-outlet />
+</main>
